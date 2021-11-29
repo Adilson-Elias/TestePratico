@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<ContatoModel>
+<div class="d-block m-auto col-12">
+
+    <form class="col-7 align-items-center">
+
+        <fieldset>
+            <legend>Novo Contato </legend>
+
+            <div class="form-group">
+                <label for="campoNome" class="col-2">Nome</label>
+                <input type="text" name="nome" id="txtNome" required class="col-5" />
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-2"> Telefone Res. </label>
+                <input type="text" name="telefone" id="txtTelRes" required class="col-5" />
+            </div>
+
+
+            <div class="form-group">
+                <label for="" class="col-2"> Celular</label>
+                <input type="text" name="celular" id="txtCelular" required class="col-5" />
+            </div>
+            <div class="form-group text-center">
+                <input class="" value="Adicionar" id="btnAdicionar" />
+            </div>
+        </fieldset>
+    </form>
+    <table class="col-6 border border-dark" id="dgvContato">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone Res.</th>
+                <th scope="col">Celular</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>
+                        @Html.DisplayFor(m => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.TelefoneResidencial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.TelefoneCelular)
+                    </td>
+                    <td>
+                        <a class="btn" method="post" asp-controller="Contato" asp-action="DeleteContato" asp-route-id="@item.ID">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{ 
+<script src="~/js/Contato/Contato.js"></script>
+}
